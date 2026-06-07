@@ -46,19 +46,28 @@
   -->
 
   <style>
+    /* larger type overall */
+    .jspsych-display-element { font-size: 21px; }
+    .jspsych-content { max-width: 92%; line-height: 1.7; }
+
     /* six forced-choice options at FIXED positions: 3 top, 3 bottom */
     #jspsych-audio-button-response-btngroup {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-template-rows: repeat(2, 1fr);
       gap: 48px 64px;
-      width: min(820px, 90vw);
+      width: min(860px, 92vw);
       margin: 56px auto;
       justify-items: center; align-items: center;
     }
-    .fc-option { font-size: 1.9rem; padding: 18px 26px; min-width: 140px; border-radius: 12px; }
-    .fc-start  { font-size: 1.4rem; padding: 16px 34px; border-radius: 12px; }
+    #jspsych-audio-button-response-btngroup .jspsych-btn {
+      font-size: 2.1rem; padding: 20px 30px; min-width: 150px; border-radius: 12px;
+    }
+    /* single centered buttons (start / beep / completion) */
     #jspsych-html-button-response-btngroup { display: flex; justify-content: center; margin-top: 40px; }
+    #jspsych-html-button-response-btngroup .jspsych-btn {
+      font-size: 1.5rem; padding: 16px 36px; border-radius: 12px;
+    }
   </style>
 
   <!-- our logic. survey_language_background.js DEFINES pushLanguageBackgroundSurvey();

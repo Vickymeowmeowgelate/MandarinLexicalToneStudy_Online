@@ -64,14 +64,15 @@ window.playBeep = playBeep;   // so the in-stimulus button can call it
 
 /* =============================== FRONT MATTER =============================== */
 
-/* consent (image) */
+/* consent (image shown in a bordered, scrollable box) */
 timeline.push({
   type: jsPsychSurveyMultiChoice,
   preamble: `
-    <div style="text-align:center;">
-      <img src="resources/consentform.jpg" alt="Consent Form" style="max-width:100%; height:auto;">
+    <div style="border:1px solid #999; border-radius:6px; max-width:820px; max-height:62vh;
+                overflow-y:auto; margin:16px auto; padding:18px; text-align:center; background:#fff;">
+      <img src="resources/consentform.jpg" alt="知情同意书" style="max-width:100%; height:auto;">
     </div>
-    <p>请阅读以上知情同意书。您必须同意才能参加。</p>`,
+    <p style="max-width:820px; margin:12px auto;">请阅读以上知情同意书（可在框内向下滚动）。您必须同意才能参加。</p>`,
   questions: [{
     prompt: "我是否同意参加这项研究？",
     name: "consent", options: ["我同意参加这项研究"], required: true
@@ -201,14 +202,12 @@ function makeForcedChoice(row) {
     type: jsPsychHtmlButtonResponse,
     stimulus: "<p>准备好后，请点击下方按钮开始播放音频。</p>",
     choices: ["▶ 开始"],
-    button_html: '<button class="jspsych-btn fc-start">%choice%</button>',
     data: rowMeta(row, { phase: "fc_start" })
   };
   const choice = {
     type: jsPsychAudioButtonResponse, stimulus: row.audio,
     prompt: "<p>请选择您听到的词语。</p>",
     choices: options.map(o => o.text),
-    button_html: '<button class="jspsych-btn fc-option">%choice%</button>',
     response_allowed_while_playing: false,
     margin_vertical: "0px", margin_horizontal: "0px",
     extensions: [{ type: jsPsychExtensionMouseTracking, params: { targets: FC_BTN_SELECTORS } }],

@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"name": "MandarinLexicalToneStudy_Online",
+			"path": ".."
+		},
+		{
+			"name": "jspsych",
+			"path": "../../../Downloads/Artificial-Grammar-Learning-master/jspsych"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "MandarinLexicalToneStudy_Online"
+	}
+}
