@@ -102,7 +102,7 @@ timeline.push({
 /* device + beep check */
 timeline.push({
   type: jsPsychHtmlKeyboardResponse,
-  stimulus: "本实验需在<strong>笔记本电脑</strong>上使用 <strong>Chrome 浏览器</strong>，并佩戴<strong>耳机</strong>。<br><br>请确保音量适中。<br><br>按空格键继续。",
+  stimulus: "<p style=\"font-size:1.4em; line-height:1.7;\">请使用<strong>电脑</strong>（台式或笔记本均可，<strong>请勿使用手机或平板</strong>），并佩戴<strong>耳机</strong>。<br>建议使用 Chrome 或 Safari 浏览器。<br>按空格键继续。</p>",
   choices: [" "]
 });
 timeline.push({
@@ -152,8 +152,11 @@ timeline.push({
 });
 
 /* ============================ TASK INTERFACES =============================== */
+// Target each of the six option cells. In jsPsych v7 each .jspsych-btn is wrapped
+// in its own div, so `.jspsych-btn:nth-child(N)` matched all-or-none; the direct
+// children of the btngroup (the wrappers / grid cells) are the per-position targets.
 const FC_BTN_SELECTORS = [0,1,2,3,4,5].map(
-  i => `#jspsych-audio-button-response-btngroup .jspsych-btn:nth-child(${i+1})`);
+  i => `#jspsych-audio-button-response-btngroup > *:nth-child(${i+1})`);
 
 function rowMeta(row, extra) {
   return Object.assign({
@@ -164,6 +167,7 @@ function rowMeta(row, extra) {
     audio: row.audio, item_role: row.item_role, is_repeat: Number(row.is_repeat || 0),
     repeat_condition: row.repeat_condition || "", original_task: row.original_task || "",
     first_exposure_id: row.first_exposure_id || "",
+    heard_tone: row.heard_tone || "",          // carried on ALL trials (incl. typed-response) for substitution analysis
     subject_id: expInfo.subject_id, test_version: expInfo.test_version, list_id: expInfo.list
   }, extra || {});
 }
@@ -187,6 +191,26 @@ function makeTask3(row) {
       d.recall_exact = d.typed_recall === String(row.correct_response).trim() ? 1 : 0;
     }
   };
+
+  // Repeat block only (is_repeat=1): right after the audio and BEFORE typing,
+  // ask whether they heard THIS recording in Blocks 1-3.
+  // Veridical answer: same_audio -> 有 ; diff_condition -> 没有 (same word, different
+  // recording) -> a "有" here is a familiarity-driven false alarm (episodic vs. abstract).
+  if (Number(row.is_repeat) === 1) {
+    const recognition = {
+      type: jsPsychHtmlButtonResponse,
+      stimulus: "<p style=\"font-size:1.4em; line-height:1.7;\">在前面的部分，您有没有听到过<strong>这一段录音</strong>？</p>",
+      choices: ["有", "没有"],
+      data: rowMeta(row, { phase: "repeat_recognition" }),
+      on_finish: d => {
+        d.recog_response = d.response === 0 ? "heard" : "not_heard";
+        d.recog_veridical = ((row.repeat_condition === "same_audio"     && d.response === 0) ||
+                             (row.repeat_condition === "diff_condition"  && d.response === 1)) ? 1 : 0;
+      }
+    };
+    return { timeline: [listen, recognition, recall] };
+  }
+
   return { timeline: [listen, recall] };
 }
 
@@ -204,6 +228,10 @@ function makeForcedChoice(row) {
     choices: ["▶ 开始"],
     data: rowMeta(row, { phase: "fc_start" })
   };
+
+  // ms from trial start to when the options become visible (i.e. audio end); set in on_load.
+  let revealOffset = 0;
+
   const choice = {
     type: jsPsychAudioButtonResponse, stimulus: row.audio,
     prompt: "<p>请选择您听到的词语。</p>",
@@ -211,6 +239,25 @@ function makeForcedChoice(row) {
     response_allowed_while_playing: false,
     margin_vertical: "0px", margin_horizontal: "0px",
     extensions: [{ type: jsPsychExtensionMouseTracking, params: { targets: FC_BTN_SELECTORS } }],
+    on_load: () => {
+      // Hide the option set while the audio plays; reveal it only once the audio
+      // ends. With response_allowed_while_playing:false the plugin renders the
+      // buttons disabled during playback and enables them when the audio finishes,
+      // so we watch the first button's `disabled` flag and reveal on enable.
+      // We also record the reveal time so mouse samples taken before the options
+      // appear (cursor over a blank screen) can be dropped in on_finish.
+      const t0 = performance.now();
+      const grp = document.querySelector("#jspsych-audio-button-response-btngroup");
+      if (!grp) return;
+      grp.style.visibility = "hidden";                 // keeps layout (no jump on reveal)
+      const reveal = () => { grp.style.visibility = "visible"; revealOffset = performance.now() - t0; };
+      const firstBtn = grp.querySelector("button");
+      if (!firstBtn || !firstBtn.disabled) { reveal(); return; }
+      const obs = new MutationObserver(() => {
+        if (!firstBtn.disabled) { reveal(); obs.disconnect(); }
+      });
+      obs.observe(firstBtn, { attributes: true, attributeFilter: ["disabled"] });
+    },
     data: rowMeta(row, {
       phase: isTask1 ? "task1_choice" : "task2_choice",
       correct_pos, correct_response: row.correct_response,
@@ -220,6 +267,12 @@ function makeForcedChoice(row) {
       opt_tone: options.map(o => o.tone).join("|")
     }),
     on_finish: d => {
+      // Keep only cursor samples recorded AFTER the options appeared (audio end).
+      // The extension samples from trial start; revealOffset (ms) is the audio-end point.
+      if (Array.isArray(d.mouse_tracking_data) && revealOffset > 0) {
+        d.mouse_tracking_data = d.mouse_tracking_data.filter(s => s.t >= revealOffset);
+      }
+      d.mt_reveal_offset_ms = Math.round(revealOffset);
       d.rt_sec = d.rt ? (d.rt / 1000).toFixed(3) : null;
       const pos = d.response;
       d.response_pos  = pos;
@@ -240,10 +293,18 @@ function makeTrialFromRow(row) {
 }
 
 const BLOCK_INTRO = {
-  1: "<h3>第一部分</h3><p>您将听到一些词语。每段音频只播放一次。<br>听完后，请用<strong>简体中文输入法</strong>把您听到的词语<strong>打出来</strong>。<br><br>按空格键开始。</p>",
-  2: "<h3>选择部分</h3><p>每段音频播放一次后，请从六个选项中<strong>点击</strong>您听到的词语。<br><br>按空格键开始。</p>",
-  3: "<h3>选择部分</h3><p>每段音频播放一次后，请从六个选项中<strong>点击</strong>您听到的词语。<br><br>按空格键开始。</p>",
-  4: "<h3>最后一部分</h3><p>您会再听到一些词语，听完后<strong>打出</strong>您听到的词语。<br><br>按空格键开始。</p>"
+  1: "<div style=\"font-size:2.4em; font-weight:bold; margin-bottom:20px;\">第一部分</div>" +
+     "<div style=\"font-size:1em; line-height:1.7; max-width:680px; margin:0 auto 22px;\">您将听到一些词语。每段音频只播放一次。听完后，请用<strong>简体中文输入法</strong>把您听到的词语<strong>打出来</strong>。</div>" +
+     "<div style=\"font-size:1.3em;\">按空格键开始</div>",
+  2: "<div style=\"font-size:2.4em; font-weight:bold; margin-bottom:20px;\">选择部分</div>" +
+     "<div style=\"font-size:1em; line-height:1.7; max-width:680px; margin:0 auto 22px;\">每段音频播放一次后，请从六个选项中<strong>点击</strong>您听到的词语。</div>" +
+     "<div style=\"font-size:1.3em;\">按空格键开始</div>",
+  3: "<div style=\"font-size:2.4em; font-weight:bold; margin-bottom:20px;\">选择部分</div>" +
+     "<div style=\"font-size:1em; line-height:1.7; max-width:680px; margin:0 auto 22px;\">每段音频播放一次后，请从六个选项中<strong>点击</strong>您听到的词语。</div>" +
+     "<div style=\"font-size:1.3em;\">按空格键开始</div>",
+  4: "<div style=\"font-size:2.4em; font-weight:bold; margin-bottom:20px;\">最后一部分</div>" +
+     "<div style=\"font-size:1em; line-height:1.7; max-width:680px; margin:0 auto 22px;\">您会再听到一些词语，听完后<strong>打出</strong>您听到的词语。</div>" +
+     "<div style=\"font-size:1.3em;\">按空格键开始</div>"
 };
 const blockIntro = (b, label) => ({
   type: jsPsychHtmlKeyboardResponse,
