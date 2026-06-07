@@ -1,0 +1,249 @@
+{
+  "groups_order": [
+    "北方官话及其他官话",
+    "江淮官话",
+    "晋语",
+    "吴语",
+    "粤语",
+    "闽语",
+    "客家话",
+    "赣语",
+    "湘语"
+  ],
+  "groups": {
+    "北方官话及其他官话": [
+      {
+        "code": "MAND-BJ",
+        "city": "北京话、普通话、哈尔滨话、沈阳话、承德话",
+        "tone_title": "清入散入四声、无规律(北京/东北型)",
+        "is_other": false
+      },
+      {
+        "code": "MAND-ZY",
+        "city": "郑州/河南话、洛阳话、西安话、徐州话",
+        "tone_title": "清入归阴平、次浊入也归阴平(中原型)",
+        "is_other": false
+      },
+      {
+        "code": "MAND-JL",
+        "city": "济南话、天津话、石家庄话、保定话",
+        "tone_title": "清入归阴平、次浊入归去声(冀鲁型)",
+        "is_other": false
+      },
+      {
+        "code": "MAND-JIAOLIAO",
+        "city": "青岛话、烟台话、大连话",
+        "tone_title": "清入归上声(胶辽型)",
+        "is_other": false
+      },
+      {
+        "code": "MAND-LANYIN",
+        "city": "兰州话、银川话、乌鲁木齐话",
+        "tone_title": "清入归去声(兰银型)",
+        "is_other": false
+      },
+      {
+        "code": "MAND-SW",
+        "city": "成都话、重庆话、武汉话、昆明话、贵阳话",
+        "tone_title": "入声整体归阳平(西南型)",
+        "is_other": false
+      },
+      {
+        "code": "MAND-OTHER",
+        "city": "北方官话及其他官话：以上都不是 / 请填写您学话的县市:____",
+        "tone_title": "我的具体方言没列出来",
+        "is_other": true
+      }
+    ],
+    "江淮官话": [
+      {
+        "code": "JH-HONGCHAO",
+        "city": "南京话、扬州话、合肥话(洪巢片)",
+        "tone_title": "入声独立、去声不分阴阳(约5调)",
+        "is_other": false
+      },
+      {
+        "code": "JH-TAIRU",
+        "city": "南通话、泰州话(泰如片)",
+        "tone_title": "入声/去声再分阴阳(调数更多)",
+        "is_other": false
+      },
+      {
+        "code": "JH-OTHER",
+        "city": "江淮官话：以上都不是 / 请填写您学话的县市:____",
+        "tone_title": "我的具体方言没列出来",
+        "is_other": true
+      }
+    ],
+    "晋语": [
+      {
+        "code": "JIN-FENG",
+        "city": "太原话、大同话、阳泉话、忻州话",
+        "tone_title": "入声分阴阳(舒入对立明显)",
+        "is_other": false
+      },
+      {
+        "code": "JIN-MERGE",
+        "city": "呼和浩特话、包头话(内蒙古中西部)",
+        "tone_title": "入声不分阴阳 / 调数较少",
+        "is_other": false
+      },
+      {
+        "code": "JIN-OTHER",
+        "city": "晋语：以上都不是 / 请填写您学话的县市:____",
+        "tone_title": "我的具体方言没列出来",
+        "is_other": true
+      }
+    ],
+    "吴语": [
+      {
+        "code": "WU-7",
+        "city": "苏州话、无锡话、宁波话、绍兴话",
+        "tone_title": "约7调,平上去入大体各分阴阳",
+        "is_other": false
+      },
+      {
+        "code": "WU-NEW",
+        "city": "上海话(新派)",
+        "tone_title": "新派合并、调数压缩(5–6调)",
+        "is_other": false
+      },
+      {
+        "code": "WU-8",
+        "city": "温州话",
+        "tone_title": "8调全分(瓯江片独特)",
+        "is_other": false
+      },
+      {
+        "code": "WU-OTHER",
+        "city": "吴语：以上都不是 / 请填写您学话的县市:____",
+        "tone_title": "我的具体方言没列出来",
+        "is_other": true
+      }
+    ],
+    "粤语": [
+      {
+        "code": "YUE-9",
+        "city": "广州话/广东白话、香港白话、南宁白话",
+        "tone_title": "标准九声(阴入按元音长短再裂)",
+        "is_other": false
+      },
+      {
+        "code": "YUE-SIYI",
+        "city": "台山话、开平话",
+        "tone_title": "四邑型(调值独特、含变调)",
+        "is_other": false
+      },
+      {
+        "code": "YUE-GOULOU",
+        "city": "玉林话、博白话",
+        "tone_title": "勾漏型(调数可达10)",
+        "is_other": false
+      },
+      {
+        "code": "YUE-OTHER",
+        "city": "粤语：以上都不是 / 请填写您学话的县市:____",
+        "tone_title": "我的具体方言没列出来",
+        "is_other": true
+      }
+    ],
+    "闽语": [
+      {
+        "code": "MIN-NAN",
+        "city": "厦门话、泉州话、漳州话、台湾话",
+        "tone_title": "闽南型(七八音,阳上多并阳去)",
+        "is_other": false
+      },
+      {
+        "code": "MIN-CHAOSHAN",
+        "city": "潮州话、汕头话",
+        "tone_title": "潮汕型(8调,阳上独立)",
+        "is_other": false
+      },
+      {
+        "code": "MIN-DONG",
+        "city": "福州话、福安话",
+        "tone_title": "闽东型(连读变调极复杂)",
+        "is_other": false
+      },
+      {
+        "code": "MIN-QIONGLEI",
+        "city": "海口话、雷州话",
+        "tone_title": "琼雷型",
+        "is_other": false
+      },
+      {
+        "code": "MIN-PUXIAN",
+        "city": "莆田话、仙游话",
+        "tone_title": "莆仙型",
+        "is_other": false
+      },
+      {
+        "code": "MIN-OTHER",
+        "city": "闽语：以上都不是 / 请填写您学话的县市:____",
+        "tone_title": "我的具体方言没列出来",
+        "is_other": true
+      }
+    ],
+    "客家话": [
+      {
+        "code": "HAKKA-6",
+        "city": "梅县话/梅州话、惠阳客家话、四县话",
+        "tone_title": "6调,入声分阴阳",
+        "is_other": false
+      },
+      {
+        "code": "HAKKA-7",
+        "city": "海陆客家话、部分台湾客家话",
+        "tone_title": "7调(海陆腔,多一调)",
+        "is_other": false
+      },
+      {
+        "code": "HAKKA-OTHER",
+        "city": "客家话：以上都不是 / 请填写您学话的县市:____",
+        "tone_title": "我的具体方言没列出来",
+        "is_other": true
+      }
+    ],
+    "赣语": [
+      {
+        "code": "GAN-FENG",
+        "city": "南昌话、抚州话",
+        "tone_title": "入声分阴阳(6–7调)",
+        "is_other": false
+      },
+      {
+        "code": "GAN-MERGE",
+        "city": "宜春话、吉安话",
+        "tone_title": "入声不分阴阳 / 调数较少",
+        "is_other": false
+      },
+      {
+        "code": "GAN-OTHER",
+        "city": "赣语：以上都不是 / 请填写您学话的县市:____",
+        "tone_title": "我的具体方言没列出来",
+        "is_other": true
+      }
+    ],
+    "湘语": [
+      {
+        "code": "XIANG-OLD",
+        "city": "双峰话、娄底话",
+        "tone_title": "老湘语(保留浊声母,调多,浊上去独立)",
+        "is_other": false
+      },
+      {
+        "code": "XIANG-NEW",
+        "city": "长沙话、湘潭话、株洲话",
+        "tone_title": "新湘语(浊音清化,调数较少)",
+        "is_other": false
+      },
+      {
+        "code": "XIANG-OTHER",
+        "city": "湘语：以上都不是 / 请填写您学话的县市:____",
+        "tone_title": "我的具体方言没列出来",
+        "is_other": true
+      }
+    ]
+  }
+}
