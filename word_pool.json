@@ -1,0 +1,1479 @@
+[
+  {
+    "word": "一天",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一年",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一起",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一些",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一直",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一般",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一种",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "一时",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一口",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一手",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一头",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一同",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一举",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一连",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一斤",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一旁",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一晃眼",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一团糟",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一口气",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一般般",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一条龙",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一回事",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一体化",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一窝蜂",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一连串",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一丁点",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一刀切",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一时间",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一帆风顺",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "一丝不苟",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "一针见血",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "一鸣惊人",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "一举两得",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "一本正经",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "一言为定",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "一清二楚",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "一声不吭",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "一刀两断",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "一己之力",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "一鼓作气",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "可见一斑",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "别具一格",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "大吃一惊",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "倒打一耙",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "天各一方",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "一言以蔽之",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "一百八十度",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "一锤子买卖",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "一山不容二虎",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "一石激起千层浪",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "一失足成千古恨",
+    "word_type": "single_card_t4",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "一定",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "一切",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一下",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "一共",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一旦",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一路",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一道",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "一度",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一贯",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一概",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一带",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "一众",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一瞬间",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一下子",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一大早",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一次性",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一站式",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一系列",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "有一套",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "清一色",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一概而论",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "一见钟情",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "一望无际",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "一动不动",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "一窍不通",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "一目了然",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "一视同仁",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "一技之长",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "一路货色",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "背水一战",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "一棍子打死",
+    "word_type": "single_card_t2",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "一流",
+    "word_type": "single_ord_t1",
+    "correct_tone": 1.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "统一",
+    "word_type": "single_ord_t1",
+    "correct_tone": 1.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "单一",
+    "word_type": "single_ord_t1",
+    "correct_tone": 1.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "第一",
+    "word_type": "single_ord_t1",
+    "correct_tone": 1.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "唯一",
+    "word_type": "single_ord_t1",
+    "correct_tone": 1.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "之一",
+    "word_type": "single_ord_t1",
+    "correct_tone": 1.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "专一",
+    "word_type": "single_ord_t1",
+    "correct_tone": 1.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "万一",
+    "word_type": "single_ord_t1",
+    "correct_tone": 1.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "初一",
+    "word_type": "single_ord_t1",
+    "correct_tone": 1.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "逐一",
+    "word_type": "single_ord_t1",
+    "correct_tone": 1.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "专一性",
+    "word_type": "single_ord_t1",
+    "correct_tone": 1.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "第一次",
+    "word_type": "single_ord_t1",
+    "correct_tone": 1.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "第一手",
+    "word_type": "single_ord_t1",
+    "correct_tone": 1.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "单一化",
+    "word_type": "single_ord_t1",
+    "correct_tone": 1.0,
+    "task1_eligible": true,
+    "task2_eligible": true
+  },
+  {
+    "word": "独一无二",
+    "word_type": "single_ord_t1",
+    "correct_tone": 1.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "统一着装",
+    "word_type": "single_ord_t1",
+    "correct_tone": 1.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "逐一核对",
+    "word_type": "single_ord_t1",
+    "correct_tone": 1.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "决一死战",
+    "word_type": "single_ord_t1",
+    "correct_tone": 1.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "数一数二",
+    "word_type": "single_ord_t1",
+    "correct_tone": 1.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "说一不二",
+    "word_type": "single_ord_t1",
+    "correct_tone": 1.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "举一反三",
+    "word_type": "single_ord_t1",
+    "correct_tone": 1.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "万里挑一",
+    "word_type": "single_ord_t1",
+    "correct_tone": 1.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "以防万一",
+    "word_type": "single_ord_t1",
+    "correct_tone": 1.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "表里如一",
+    "word_type": "single_ord_t1",
+    "correct_tone": 1.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "九九归一",
+    "word_type": "single_ord_t1",
+    "correct_tone": 1.0,
+    "task1_eligible": true,
+    "task2_eligible": false
+  },
+  {
+    "word": "一心一意",
+    "word_type": "double_yi",
+    "correct_tone": "4;2",
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "一五一十",
+    "word_type": "double_yi",
+    "correct_tone": "1;1",
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "一带一路",
+    "word_type": "double_yi",
+    "correct_tone": "2;2",
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "一朝一夕",
+    "word_type": "double_yi",
+    "correct_tone": "4:4",
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "一言一行",
+    "word_type": "double_yi",
+    "correct_tone": "4;4",
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "一问一答",
+    "word_type": "double_yi",
+    "correct_tone": "2;4",
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "一针一线",
+    "word_type": "double_yi",
+    "correct_tone": "4;2",
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "一模一样",
+    "word_type": "double_yi",
+    "correct_tone": "4;2",
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "一颦一笑",
+    "word_type": "double_yi",
+    "correct_tone": "4;2",
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "一唱一和",
+    "word_type": "double_yi",
+    "correct_tone": "2;2",
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "一式一份",
+    "word_type": "double_yi",
+    "correct_tone": "2;2",
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "一惊一乍",
+    "word_type": "double_yi",
+    "correct_tone": "4;2",
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "一草一木",
+    "word_type": "double_yi",
+    "correct_tone": "4;2",
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "一物降一物",
+    "word_type": "double_yi",
+    "correct_tone": "2;2",
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "一报还一报",
+    "word_type": "double_yi",
+    "correct_tone": "2;2",
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "一步一回头",
+    "word_type": "double_yi",
+    "correct_tone": "2;4",
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "一岁一枯荣",
+    "word_type": "double_yi",
+    "correct_tone": "2;4",
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "有一说一",
+    "word_type": "double_yi",
+    "correct_tone": "1;1",
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "一寸光阴一寸金",
+    "word_type": "double_yi",
+    "correct_tone": "2;2",
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "一年一度",
+    "word_type": "double_yi",
+    "correct_tone": "4;2",
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "不能",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "不要",
+    "word_type": "single_bu",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不是",
+    "word_type": "single_bu",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不过",
+    "word_type": "single_bu",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不同",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不好",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不断",
+    "word_type": "single_bu",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不仅",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不管",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不必",
+    "word_type": "single_bu",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不止",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不如",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不错",
+    "word_type": "single_bu",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不幸",
+    "word_type": "single_bu",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不宜",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不堪",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不免",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不安",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不足",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不妨",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不准",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不行",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不见",
+    "word_type": "single_bu",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不够",
+    "word_type": "single_bu",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不公",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不端",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不许",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不屑",
+    "word_type": "single_bu",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不利",
+    "word_type": "single_bu",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不善",
+    "word_type": "single_bu",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不可能",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "忍不住",
+    "word_type": "single_bu",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "受不了",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "大不了",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "吃不准",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "想不通",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "看不惯",
+    "word_type": "single_bu",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "信不过",
+    "word_type": "single_bu",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "保不齐",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "冷不丁",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "恨不得",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不靠谱",
+    "word_type": "single_bu",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "不差钱",
+    "word_type": "single_bu",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "不共戴天",
+    "word_type": "single_bu",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "不假思索",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "不劳而获",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "不了了之",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "说不过去",
+    "word_type": "single_bu",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "截然不同",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "死不认账",
+    "word_type": "single_bu",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "油盐不进",
+    "word_type": "single_bu",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "爱答不理",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "二话不说",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "无孔不入",
+    "word_type": "single_bu",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "马不停蹄",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "下不为例",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "战无不胜",
+    "word_type": "single_bu",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "执迷不悟",
+    "word_type": "single_bu",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "格格不入",
+    "word_type": "single_bu",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "全然不顾",
+    "word_type": "single_bu",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "不知者无罪",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "不费吹灰之力",
+    "word_type": "single_bu",
+    "correct_tone": 2.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "不知天高地厚",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "不管三七二十一",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "有过之无不及",
+    "word_type": "single_bu",
+    "correct_tone": 4.0,
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "不得不",
+    "word_type": "double_bu",
+    "correct_tone": "4;4",
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "不偏不倚",
+    "word_type": "double_bu",
+    "correct_tone": "4;4",
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不蔓不枝",
+    "word_type": "double_bu",
+    "correct_tone": "2;4",
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不明不白",
+    "word_type": "double_bu",
+    "correct_tone": "4;4",
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不慌不忙",
+    "word_type": "double_bu",
+    "correct_tone": "4;4",
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不知不觉",
+    "word_type": "double_bu",
+    "correct_tone": "4;4",
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不清不楚",
+    "word_type": "double_bu",
+    "correct_tone": "4;4",
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不依不饶",
+    "word_type": "double_bu",
+    "correct_tone": "4;4",
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不闻不问",
+    "word_type": "double_bu",
+    "correct_tone": "4;2",
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不声不响",
+    "word_type": "double_bu",
+    "correct_tone": "4;4",
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不破不立",
+    "word_type": "double_bu",
+    "correct_tone": "2;2",
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不三不四",
+    "word_type": "double_bu",
+    "correct_tone": "4;2",
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不折不扣",
+    "word_type": "double_bu",
+    "correct_tone": "4;2",
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不理不睬",
+    "word_type": "double_bu",
+    "correct_tone": "4;4",
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不卑不亢",
+    "word_type": "double_bu",
+    "correct_tone": "4;2",
+    "task1_eligible": false,
+    "task2_eligible": true
+  },
+  {
+    "word": "不见棺材不落泪",
+    "word_type": "double_bu",
+    "correct_tone": "2;2",
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "不撞南墙不回头",
+    "word_type": "double_bu",
+    "correct_tone": "2;4",
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "不打不相识",
+    "word_type": "double_bu",
+    "correct_tone": "4;4",
+    "task1_eligible": false,
+    "task2_eligible": false
+  },
+  {
+    "word": "眼不见心不烦",
+    "word_type": "double_bu",
+    "correct_tone": "2;4",
+    "task1_eligible": false,
+    "task2_eligible": false
+  }
+]

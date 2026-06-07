@@ -1,171 +1,352 @@
-/* =====================================================================
-   Mandarin Lexical Tone Experiment
-   Timeline plan (built step by step):
-     consent  ->  [Task3 | Task1 | Task2 | Repeat blocks]  ->  survey
-              ->  DataPipe save (anonymous)  ->  completion code
-   Anonymity rule: the Prolific ID is NEVER read or saved. We use our own
-   random SUBJECT_ID. (Protocol: Prolific IDs are never recorded.)
+/* =============================================================================
+   experiment.js — Mandarin Lexical Tone (MLT) online behavioural task
+   -----------------------------------------------------------------------------
+   Flow:
+     consent -> eligibility screening -> device/beep check
+            -> [ Block1 Task3 | Block2/3 Task1/Task2 | Block4 Repeat ]  (MLT_Online.csv)
+            -> language-background questionnaire (survey_language_background.js)
+            -> DataPipe save -> Prolific completion
 
-   index.html include order (local first; CDN equivalents in comments there):
-     jspsych core + jspsych.css
-     plugin-survey-multi-choice.js        (consent gate)
-     plugin-audio-button-response.js      (audio test)
-     plugin-survey.js  +  survey.css      (SurveyJS — the language-background survey)
-     survey_language_background.js        (our survey module; defines pushLanguageBackgroundSurvey)
-     [later] plugin-browser-check, DataPipe save plugin, etc.
-   ===================================================================== */
+   - List assignment: DataPipe getCondition over 84 conditions (lab standard).
+   - Anonymity: PROLIFIC_PID is NEVER stored; only an anonymous subject_id +
+     a from_prolific boolean.
+   - Mouse-tracking is a secondary/exploratory measure on Task 1 & Task 2.
+   - Device check uses a generated beep (Web Audio), no audio file needed.
+   ============================================================================= */
 
 const CONFIG = {
-  datapipeExperimentId: "iuwfMNzXuVER",  // used only at the save/assignment step
-  nLists: 84
-  // OSF project j8rbu / data component gzptx are configured on the DataPipe
-  // dashboard, NOT referenced in code.
+  datapipeExperimentId: "iuwfMNzXuVER",   // OSF j8rbu / gzptx set on the DataPipe dashboard
+  nLists: 84,
+  trialTable: "MLT_Online.csv",
+  // ---- Prolific completion: choose "code" (show a code) or "redirect" ----
+  completionMode: "code",
+  prolificCode: "REPLACE_WITH_PROLIFIC_CODE",
+  prolificRedirectURL: "https://app.prolific.com/submissions/complete?cc=REPLACE_WITH_PROLIFIC_CODE"
 };
 
-// show_progress_bar -> the "Completion Progress" bar at the top of every screen
 const jsPsych = initJsPsych({
   show_progress_bar: true,
-  message_progress_bar: "Completion Progress"
+  message_progress_bar: "完成进度",
+  auto_update_progress_bar: true,
+  extensions: [{ type: jsPsychExtensionMouseTracking }],
+  on_finish: () => console.log("Experiment finished.")
 });
 
-// anonymous id (NOT the Prolific id) — created now, used when we add saving
-const SUBJECT_ID = jsPsych.randomization.randomID(10);
-jsPsych.data.addProperties({ subject_id: SUBJECT_ID });
+/* identity — anonymous only */
+const subject_id = jsPsych.randomization.randomID(10);
+const filename   = `${subject_id}.csv`;
+const fromProlific = !!jsPsych.data.getURLVariable("PROLIFIC_PID");  // boolean only
 
-/* ---------------------------------------------------------------------
-   CONSENT  (first page)
-   The Mandarin consent image is shown in a scrolling box. The required radio
-   forces agreement before continuing. English/Mandarin source documents live
-   alongside the project; this page shows resources/consentform.jpg.
-   --------------------------------------------------------------------- */
-const consent = {
+let expInfo = { subject_id, session: "001", test_version: "MLT_v1", list: null };
+
+jsPsych.data.addProperties({
+  subject_id, session: expInfo.session, test_version: expInfo.test_version,
+  from_prolific: fromProlific          // we deliberately do NOT store the Prolific ID
+});
+
+var timeline = [];
+
+/* ---- generated beep for the device/headphone check (no file) ---- */
+function playBeep(freq = 440, ms = 450) {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator(), gain = ctx.createGain();
+    osc.type = "sine"; osc.frequency.value = freq;
+    osc.connect(gain); gain.connect(ctx.destination);
+    const t = ctx.currentTime;
+    gain.gain.setValueAtTime(0.0001, t);
+    gain.gain.exponentialRampToValueAtTime(0.25, t + 0.03);
+    gain.gain.exponentialRampToValueAtTime(0.0001, t + ms / 1000);
+    osc.start(t); osc.stop(t + ms / 1000 + 0.02);
+  } catch (e) { console.warn("Beep failed:", e); }
+}
+window.playBeep = playBeep;   // so the in-stimulus button can call it
+
+/* =============================== FRONT MATTER =============================== */
+
+/* consent (image) */
+timeline.push({
   type: jsPsychSurveyMultiChoice,
   preamble: `
-    <div style="max-width:820px; margin:0 auto;">
-      <div style="border:2px solid #888; border-radius:4px; height:62vh;
-                  overflow-y:scroll; padding:16px; text-align:center;
-                  background:#fff;">
-        <img src="resources/consentform.jpg" alt="知情同意书"
-             style="max-width:100%; display:block; margin:0 auto;">
-      </div>
-      <p style="max-width:820px; margin:18px auto 0; text-align:center;">
-        请仔细阅读以上知情同意书。您必须同意才能参加本研究。
-      </p>
-    </div>`,
+    <div style="text-align:center;">
+      <img src="resources/consentform.jpg" alt="Consent Form" style="max-width:100%; height:auto;">
+    </div>
+    <p>请阅读以上知情同意书。您必须同意才能参加。</p>`,
   questions: [{
     prompt: "我是否同意参加这项研究？",
-    name: "consent",
-    options: ["我同意参加这项研究"],
-    required: true
+    name: "consent", options: ["我同意参加这项研究"], required: true
   }],
-  button_label: "继续"
-};
+  button_label: "继续",
+  on_finish: d => jsPsych.data.addProperties({
+    consent_given: d.response.consent === "我同意参加这项研究"
+  })
+});
 
-/* ---------------------------------------------------------------------
-   (Step 2 carryover) audio test — kept so we can keep checking sound.
-   The Continue click on the consent page already unlocked audio.
-   --------------------------------------------------------------------- */
-const listen = {
-  type: jsPsychAudioButtonResponse,
-  stimulus: "sounds/test.mp3",
-  prompt: "<p>你听到了什么？听完后点击继续。<br>What did you hear? Click when the sound finishes.</p>",
-  choices: ["继续 / Continue"],
-  response_allowed_while_playing: false
-};
-
-/* ---------------------------------------------------------------------
-   ELIGIBILITY SCREENING  (right after consent)
-   Eligible: 18+, fluent Mandarin, began Mandarin before age 7, reads Chinese.
-   Two yes/no questions; any "否" ends the study with a polite message and the
-   rest of the experiment never runs.
-   --------------------------------------------------------------------- */
-const screening = {
+/* eligibility screening (records, continues regardless) */
+timeline.push({
   type: jsPsychSurveyMultiChoice,
-  preamble: `
-    <div style="max-width:720px; margin:0 auto; text-align:left; line-height:1.7;">
-      <p>如果您<strong>年满18周岁</strong>、<strong>能流利地说普通话</strong>、
-      <strong>在7岁之前开始说普通话</strong>，并且<strong>能够阅读中文</strong>，
-      您即符合本研究的参与条件。</p>
-      <p>如果您在<strong>7岁或之后</strong>才开始说普通话，或<strong>无法阅读中文</strong>，
-      则不符合参与条件。</p>
-      <p>为确认您是否符合条件，请先回答以下两个问题。</p>
-    </div>`,
+  preamble: "<p>在开始之前，请回答以下两个问题。</p>",
   questions: [
-    {
-      prompt: "您是否年满18周岁、能够流利地说普通话，并且能够阅读中文？",
-      name: "elig_general",
-      options: ["是", "否"],
-      required: true
-    },
-    {
-      prompt: "您是否在7岁之前就开始说普通话？",
-      name: "elig_aoa",
-      options: ["是", "否"],
-      required: true
-    }
+    { prompt: "您是否已年满18岁、普通话流利，并在7岁之前开始学习普通话？",
+      name: "elig_mandarin", options: ["是", "否"], required: true },
+    { prompt: "您能否流畅地阅读中文？",
+      name: "elig_reading", options: ["是", "否"], required: true }
   ],
   button_label: "继续",
-  on_finish: function (data) {
-    const r = data.response;
-    // Record eligibility for later filtering, but DO NOT end the study —
-    // the participant continues the questionnaire regardless of their answers.
-    jsPsych.data.addProperties({
-      eligible: (r.elig_general === "是" && r.elig_aoa === "是")
-    });
+  on_finish: d => jsPsych.data.addProperties({
+    eligible: (d.response.elig_mandarin === "是") && (d.response.elig_reading === "是")
+  })
+});
+
+/* device + beep check */
+timeline.push({
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: "本实验需在<strong>笔记本电脑</strong>上使用 <strong>Chrome 浏览器</strong>，并佩戴<strong>耳机</strong>。<br><br>请确保音量适中。<br><br>按空格键继续。",
+  choices: [" "]
+});
+timeline.push({
+  type: jsPsychHtmlButtonResponse,
+  stimulus: `<p>请点击下面的按钮播放测试音，确认您能清楚地听到声音。</p>
+             <p><button type="button" class="jspsych-btn" onclick="playBeep()">▶ 播放测试音</button></p>`,
+  choices: ["我能清楚地听到"],
+  on_load: () => playBeep()
+});
+
+/* ---- Simplified-Chinese input (IME) check ----
+   Task 3 requires typing Simplified Hanzi. Online participants without a
+   Simplified-Chinese IME can't do it, so we verify early. Loops up to 3 tries,
+   records `ime_ok`, and never traps the participant (continues after 3). The
+   failure notice tells online participants they can return the task on Prolific.
+   In the lab this passes on the first try. */
+const imeCheck = {
+  type: jsPsychSurveyText,
+  preamble: "<p>本研究需要您使用<strong>简体中文输入法</strong>打字。<br>请在下方输入「<strong>学习</strong>」两个字，以确认您的输入法正常工作。</p>",
+  questions: [{ prompt: "请输入「学习」：", name: "ime_probe", required: true, placeholder: "在此输入" }],
+  button_label: "继续",
+  data: { phase: "ime_check" },
+  on_finish: d => {
+    const txt = (d.response && d.response.ime_probe) ? String(d.response.ime_probe).trim() : "";
+    d.ime_input = txt;
+    d.ime_ok = txt.includes("学习") ? 1 : 0;   // 学习 simplified; 學習 traditional would fail
   }
 };
+const imeFailNotice = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: "<p>未能检测到正确的简体中文输入。</p><p>请确认已切换到<strong>简体中文输入法</strong>后重试。如果您的设备无法输入简体中文，您可能无法完成本研究，可在 Prolific 上退回（return）该任务。</p><p>按空格键重试。</p>",
+  choices: [" "], data: { phase: "ime_fail_notice" },
+  conditional_function: () => {
+    const last = jsPsych.data.get().filter({ phase: "ime_check" }).last(1).values()[0];
+    return last && last.ime_ok === 0;
+  }
+};
+let imeAttempts = 0;
+timeline.push({
+  timeline: [imeCheck, { timeline: [imeFailNotice], conditional_function: imeFailNotice.conditional_function }],
+  loop_function: () => {
+    imeAttempts++;
+    const last = jsPsych.data.get().filter({ phase: "ime_check" }).last(1).values()[0];
+    const ok = last && last.ime_ok === 1;
+    return (!ok && imeAttempts < 3);   // retry up to 3 times, then continue regardless
+  }
+});
 
-/* =====================================================================
-   BUILD THE TIMELINE  (lab convention: push in order; run inside .then())
-   ===================================================================== */
-const timeline = [];
+/* ============================ TASK INTERFACES =============================== */
+const FC_BTN_SELECTORS = [0,1,2,3,4,5].map(
+  i => `#jspsych-audio-button-response-btngroup .jspsych-btn:nth-child(${i+1})`);
 
-timeline.push(consent);
-timeline.push(screening);   // any "否" -> jsPsych.endExperiment(), rest never runs
-// timeline.push(listen);   // DISABLED: needs sounds/test.mp3 (currently missing).
-// jsPsych auto-preloads every audio file in the timeline before the FIRST trial,
-// so a missing audio file blanks the whole page. Re-enable once the file exists,
-// or point `listen.stimulus` at a real file in one of your resources/ audio folders.
+function rowMeta(row, extra) {
+  return Object.assign({
+    list: row.list, block: Number(row.block), block_label: row.block_label,
+    trial_in_block: Number(row.trial_in_block), trial_uid: row.trial_uid,
+    task: Number(row.task), word: row.word, word_type: row.word_type,
+    correct_tone: row.correct_tone, condition: row.condition, gender: row.gender,
+    audio: row.audio, item_role: row.item_role, is_repeat: Number(row.is_repeat || 0),
+    repeat_condition: row.repeat_condition || "", original_task: row.original_task || "",
+    first_exposure_id: row.first_exposure_id || "",
+    subject_id: expInfo.subject_id, test_version: expInfo.test_version, list_id: expInfo.list
+  }, extra || {});
+}
 
-/* >>> TASK BLOCKS slot in HERE (synchronously, before the survey push):
-       Task 3 free recall (always first), then Task 1 / Task 2 counterbalanced,
-       then the Repeat block — built from resources/MLT_Online.csv.
-       When you add the CSV load, combine it with the survey load so order is
-       guaranteed, e.g.:
+/* Task 3 — free recall (audio once -> typed recall) */
+function makeTask3(row) {
+  const listen = {
+    type: jsPsychAudioKeyboardResponse, stimulus: row.audio,
+    prompt: "<p>请仔细聆听。</p>", choices: "NO_KEYS", trial_ends_after_audio: true,
+    data: rowMeta(row, { phase: "task3_listen" })
+  };
+  const recall = {
+    type: jsPsychSurveyText,
+    questions: [{ prompt: "请输入您刚才听到的词语：", name: "typed_recall",
+                  required: true, placeholder: "在此输入" }],
+    button_label: "继续",
+    data: rowMeta(row, { phase: "task3_recall", correct_response: row.correct_response }),
+    on_finish: d => {
+      d.rt_sec = d.rt ? (d.rt / 1000).toFixed(3) : null;
+      d.typed_recall = d.response ? String(d.response.typed_recall).trim() : "";
+      d.recall_exact = d.typed_recall === String(row.correct_response).trim() ? 1 : 0;
+    }
+  };
+  return { timeline: [listen, recall] };
+}
 
-         Promise.all([
-           fetch("resources/MLT_Online.csv").then(r => r.text()),
-           fetch("resources/dialect_map.json").then(r => r.json())
-         ]).then(([csvText, dmap]) => {
-           // 1) push task blocks built from csvText
-           // 2) push the survey (build it here from dmap, or keep the helper)
-           // 3) push DataPipe save + completion code
-           jsPsych.run(timeline);
-         });
+/* Task 1 & 2 — six-option forced choice (start -> audio once -> unlock -> click) */
+function makeForcedChoice(row) {
+  const options = [0,1,2,3,4,5].map(i => ({
+    text: row[`opt${i}_text`], role: row[`opt${i}_role`], tone: row[`opt${i}_tone`] }));
+  const correct_pos = Number(row.correct_pos);
+  const heard_tone  = row.heard_tone || "";
+  const isTask1     = Number(row.task) === 1;
 
-       For now, with no task blocks yet, the survey helper does its own fetch
-       and appends after consent + listen, which is the correct final order. <<< */
+  const start = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: "<p>准备好后，请点击下方按钮开始播放音频。</p>",
+    choices: ["▶ 开始"],
+    button_html: '<button class="jspsych-btn fc-start">%choice%</button>',
+    data: rowMeta(row, { phase: "fc_start" })
+  };
+  const choice = {
+    type: jsPsychAudioButtonResponse, stimulus: row.audio,
+    prompt: "<p>请选择您听到的词语。</p>",
+    choices: options.map(o => o.text),
+    button_html: '<button class="jspsych-btn fc-option">%choice%</button>',
+    response_allowed_while_playing: false,
+    margin_vertical: "0px", margin_horizontal: "0px",
+    extensions: [{ type: jsPsychExtensionMouseTracking, params: { targets: FC_BTN_SELECTORS } }],
+    data: rowMeta(row, {
+      phase: isTask1 ? "task1_choice" : "task2_choice",
+      correct_pos, correct_response: row.correct_response,
+      heard_tone_pos: row.heard_tone_pos || "", heard_tone,
+      opt_text: options.map(o => o.text).join("|"),
+      opt_role: options.map(o => o.role).join("|"),
+      opt_tone: options.map(o => o.tone).join("|")
+    }),
+    on_finish: d => {
+      d.rt_sec = d.rt ? (d.rt / 1000).toFixed(3) : null;
+      const pos = d.response;
+      d.response_pos  = pos;
+      d.response_role = (pos != null) ? options[pos].role : null;
+      d.response_tone = (pos != null) ? options[pos].tone : null;
+      d.correct       = (pos === correct_pos) ? 1 : 0;
+      d.chose_heard_tone = (isTask1 && pos != null && options[pos].tone === heard_tone) ? 1 : 0;
+    }
+  };
+  return { timeline: [start, choice] };
+}
 
-// LANGUAGE-BACKGROUND SURVEY  (after task blocks, before saving)
-pushLanguageBackgroundSurvey(timeline).then(() => {
+function makeTrialFromRow(row) {
+  const t = Number(row.task);
+  if (t === 3) return makeTask3(row);
+  if (t === 1 || t === 2) return makeForcedChoice(row);
+  return { timeline: [] };
+}
 
-  /* >>> DataPipe SAVE (anonymous) + COMPLETION CODE screen slot in HERE later.
-         The save writes subject_id + data to experiment CONFIG.datapipeExperimentId.
-         The completion code is shown to the participant only, never written to
-         the saved data. <<< */
+const BLOCK_INTRO = {
+  1: "<h3>第一部分</h3><p>您将听到一些词语。每段音频只播放一次。<br>听完后，请用<strong>简体中文输入法</strong>把您听到的词语<strong>打出来</strong>。<br><br>按空格键开始。</p>",
+  2: "<h3>选择部分</h3><p>每段音频播放一次后，请从六个选项中<strong>点击</strong>您听到的词语。<br><br>按空格键开始。</p>",
+  3: "<h3>选择部分</h3><p>每段音频播放一次后，请从六个选项中<strong>点击</strong>您听到的词语。<br><br>按空格键开始。</p>",
+  4: "<h3>最后一部分</h3><p>您会再听到一些词语，听完后<strong>打出</strong>您听到的词语。<br><br>按空格键开始。</p>"
+};
+const blockIntro = (b, label) => ({
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: BLOCK_INTRO[b] || `<h3>${label}</h3><p>按空格键开始。</p>`,
+  choices: [" "], data: { block: b, phase: "block_intro" }
+});
+const blockOutro = b => ({
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: "<p>本部分结束。</p><p>按空格键继续。</p>",
+  choices: [" "], data: { block: b, phase: "block_outro" }
+});
+
+/* ============================ LOAD CSV & BUILD ============================== */
+async function resolveList() {
+  const urlList = parseInt(jsPsych.data.getURLVariable("list"), 10);
+  if (!isNaN(urlList) && urlList >= 1 && urlList <= CONFIG.nLists) return urlList;
+  try {
+    const cond = await jsPsychPipe.getCondition(CONFIG.datapipeExperimentId);  // 0-based, balanced
+    if (typeof cond === "number" && cond >= 0) return (cond % CONFIG.nLists) + 1;
+  } catch (e) { console.warn("getCondition unavailable; using local fallback list.", e); }
+  let h = 0; for (const ch of subject_id) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
+  return (h % CONFIG.nLists) + 1;       // local-preview fallback only
+}
+
+async function main() {
+  expInfo.list = await resolveList();
+  jsPsych.data.addProperties({ list: expInfo.list });
+  console.log("Assigned list:", expInfo.list);
+
+  const csvText = await fetch(CONFIG.trialTable).then(r => r.text());
+  const parsed = Papa.parse(csvText, { header: true, skipEmptyLines: true });
+  const allRows = parsed.data.filter(r => r && r.block && r.task);
+  const myRows = allRows.filter(r => Number(r.list) === Number(expInfo.list));
+  const rows = myRows.length ? myRows : allRows;
+
+  const byBlock = {};
+  rows.forEach(r => { (byBlock[Number(r.block)] ||= []).push(r); });
+  const blockNums = Object.keys(byBlock).map(Number).sort((a, b) => a - b);
+  blockNums.forEach(b => byBlock[b].sort(
+    (x, y) => Number(x.trial_in_block) - Number(y.trial_in_block)));
+
+  timeline.push({
+    type: jsPsychPreload, audio: rows.map(r => r.audio),
+    message: "正在加载实验……", continue_after_error: true, max_load_time: 60000
+  });
+
+  blockNums.forEach(b => {
+    const label = byBlock[b][0].block_label;
+    timeline.push(blockIntro(b, label));
+    byBlock[b].forEach(row => timeline.push(makeTrialFromRow(row)));
+    timeline.push(blockOutro(b));
+  });
+
+  // language-background questionnaire (async: it fetches dialect_map.json then pushes)
+  await pushLanguageBackgroundSurvey(timeline);
+
+  // optional comments
+  timeline.push({
+    type: jsPsychSurveyText,
+    questions: [{ prompt: "您有什么想告诉研究者的吗？（可选）", rows: 5, columns: 60 }],
+    button_label: "继续",
+    data: { phase: "final_comments" }
+  });
+
+  // saving notice + DataPipe save
+  timeline.push({
+    type: jsPsychHtmlKeyboardResponse,
+    stimulus: "感谢参与！<br><br>正在保存您的数据，请稍候……",
+    choices: "NO_KEYS", trial_duration: 2500
+  });
+  timeline.push({
+    type: jsPsychPipe, action: "save",
+    experiment_id: CONFIG.datapipeExperimentId, filename,
+    data_string: () => jsPsych.data.get().csv()
+  });
+
+  // Prolific completion
+  if (CONFIG.completionMode === "redirect") {
+    timeline.push({
+      type: jsPsychHtmlButtonResponse,
+      stimulus: "实验结束，感谢您的参与！<br><br>请点击下方按钮返回 Prolific 完成提交。",
+      choices: ["返回 Prolific"],
+      on_finish: () => { window.location = CONFIG.prolificRedirectURL; }
+    });
+  } else {
+    timeline.push({
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: `实验到此结束，感谢您的参与！<br><br>您的 Prolific 完成码是：<br>
+                 <strong style="font-size:1.4em">${CONFIG.prolificCode}</strong><br><br>
+                 请复制此码并返回 Prolific 提交。<br><br>按空格键结束。`,
+      choices: [" "]
+    });
+  }
+
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") jsPsych.endExperiment("您已提前退出实验。");
+  });
 
   jsPsych.run(timeline);
-})
-.catch((err) => {
-  // A failed resource load (e.g. resources/dialect_map.json missing) would
-  // otherwise leave a silent blank page. Surface it instead.
-  console.error("Experiment failed to start:", err);
-  document.body.innerHTML =
-    '<div style="max-width:640px;margin:80px auto;font-family:sans-serif;' +
-    'text-align:center;color:#900;">' +
-    '<h3>The experiment could not start.</h3>' +
-    '<p>A required file failed to load. Check the browser console (F12) for ' +
-    'the red error and the failing URL.</p>' +
-    '<pre style="text-align:left;background:#f6f6f6;color:#333;padding:12px;' +
-    'border-radius:4px;white-space:pre-wrap;">' + String(err) + '</pre></div>';
+}
+
+main().catch(err => {
+  console.error("Fatal error building the experiment:", err);
+  document.body.innerHTML = "<p>实验加载出错，请联系研究者。</p>";
 });

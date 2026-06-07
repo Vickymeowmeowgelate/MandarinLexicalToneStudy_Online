@@ -1,40 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-  <title>Mandarin Lexical Tone Experiment</title>
+  <title>普通话声调研究</title>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="data:,">
 
-  <!-- LOCAL, version-locked to v7.3.0 -->
+  <!-- LOCAL, version-locked (jsPsych v7.3.0; plugin-survey 1.0.1; plugin-pipe latest) -->
   <script src="jspsych/dist/jspsych.js"></script>
-  <link href="jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
+  <link  href="jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
+  <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
   <script src="jspsych/dist/plugin-html-button-response.js"></script>
+  <script src="jspsych/dist/plugin-audio-keyboard-response.js"></script>
   <script src="jspsych/dist/plugin-audio-button-response.js"></script>
   <script src="jspsych/dist/plugin-survey-multi-choice.js"></script>
+  <script src="jspsych/dist/plugin-survey-text.js"></script>
+  <script src="jspsych/dist/plugin-preload.js"></script>
+  <script src="jspsych/dist/extension-mouse-tracking.js"></script>
 
-  <!-- survey plugin (language-background questionnaire).
-       NOTE: this plugin versions on a SEPARATE line from the 1.1.3 plugins above;
-       the v7.3-compatible release is 1.0.1. It bundles SurveyJS internally, so no
-       extra SurveyJS <script> is needed, but it DOES need its own stylesheet.
-       To host locally: copy the plugin's browser build to plugin-survey.js and its
-       css/survey.css into jspsych/dist/ (filenames below match your local convention). -->
+  <!-- language-background survey (SurveyJS); v7.3-compatible release is 1.0.1 -->
   <script src="jspsych/dist/plugin-survey.js"></script>
-  <link href="jspsych/dist/survey.css" rel="stylesheet" type="text/css" />
+  <link  href="jspsych/dist/survey.css" rel="stylesheet" type="text/css" />
+
+  <!-- DataPipe save + getCondition assignment -->
+  <script src="jspsych/dist/plugin-pipe.js"></script>
+
+  <!-- CSV parsing -->
+  <script src="jspsych/dist/papaparse.min.js"></script>
 
   <!-- CDN equivalents (uncomment to preview without the jspsych/ folder)
   <script src="https://unpkg.com/jspsych@7.3.0"></script>
-  <link href="https://unpkg.com/jspsych@7.3.0/css/jspsych.css" rel="stylesheet" />
+  <link  href="https://unpkg.com/jspsych@7.3.0/css/jspsych.css" rel="stylesheet" />
+  <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.3"></script>
   <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.3"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@1.1.3"></script>
   <script src="https://unpkg.com/@jspsych/plugin-audio-button-response@1.1.3"></script>
   <script src="https://unpkg.com/@jspsych/plugin-survey-multi-choice@1.1.3"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-survey-text@1.1.3"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.3"></script>
+  <script src="https://unpkg.com/@jspsych/extension-mouse-tracking@1.1.0"></script>
   <script src="https://unpkg.com/@jspsych/plugin-survey@1.0.1"></script>
-  <link href="https://unpkg.com/@jspsych/plugin-survey@1.0.1/css/survey.css" rel="stylesheet" />
+  <link  href="https://unpkg.com/@jspsych/plugin-survey@1.0.1/css/survey.css" rel="stylesheet" />
+  <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe"></script>
+  <script src="https://unpkg.com/papaparse@5.4.1/papaparse.min.js"></script>
   -->
 
-  <!-- our experiment logic.
-       survey_language_background.js DEFINES pushLanguageBackgroundSurvey();
-       experiment.js CALLS it, so the survey module must load first.
-       Both are deferred, and deferred scripts run in document order. -->
+  <style>
+    /* six forced-choice options at FIXED positions: 3 top, 3 bottom */
+    #jspsych-audio-button-response-btngroup {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 48px 64px;
+      width: min(820px, 90vw);
+      margin: 56px auto;
+      justify-items: center; align-items: center;
+    }
+    .fc-option { font-size: 1.9rem; padding: 18px 26px; min-width: 140px; border-radius: 12px; }
+    .fc-start  { font-size: 1.4rem; padding: 16px 34px; border-radius: 12px; }
+    #jspsych-html-button-response-btngroup { display: flex; justify-content: center; margin-top: 40px; }
+  </style>
+
+  <!-- our logic. survey_language_background.js DEFINES pushLanguageBackgroundSurvey();
+       experiment.js CALLS it, so the survey module loads first. Both deferred. -->
   <script src="survey_language_background.js" defer></script>
   <script src="experiment.js" defer></script>
 </head>
