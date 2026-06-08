@@ -14,13 +14,13 @@
    ============================================================================= */
 
 const CONFIG = {
-  datapipeExperimentId: "iuwfMNzXuVER",   // OSF j8rbu / gzptx set on the DataPipe dashboard
+  datapipeExperimentId: "iuwfMNzXuVER", 
   nLists: 84,
   trialTable: "MLT_Online.csv",
-  // ---- Prolific completion: choose "code" (show a code) or "redirect" ----
+  // ---- Prolific completion: TODO ----
   completionMode: "code",
   prolificCode: "REPLACE_WITH_PROLIFIC_CODE",
-  prolificRedirectURL: "https://app.prolific.com/submissions/complete?cc=REPLACE_WITH_PROLIFIC_CODE"
+  prolificRedirectURL: "TODO"
 };
 
 const jsPsych = initJsPsych({
@@ -28,24 +28,24 @@ const jsPsych = initJsPsych({
   message_progress_bar: "完成进度",
   auto_update_progress_bar: true,
   extensions: [{ type: jsPsychExtensionMouseTracking }],
-  on_finish: () => console.log("Experiment finished.")
+  on_finish: () => console.log("实验结束，感谢您的参与！"),
 });
 
 /* identity — anonymous only */
 const subject_id = jsPsych.randomization.randomID(10);
 const filename   = `${subject_id}.csv`;
-const fromProlific = !!jsPsych.data.getURLVariable("PROLIFIC_PID");  // boolean only
+const fromProlific = !!jsPsych.data.getURLVariable("PROLIFIC_PID TODO"); 
 
 let expInfo = { subject_id, session: "001", test_version: "MLT_v1", list: null };
 
 jsPsych.data.addProperties({
   subject_id, session: expInfo.session, test_version: expInfo.test_version,
-  from_prolific: fromProlific          // we deliberately do NOT store the Prolific ID
+  from_prolific: fromProlific          // not storing Prolific PID: TODO
 });
 
 var timeline = [];
 
-/* ---- generated beep for the device/headphone check (no file) ---- */
+/* generated beep for the device/headphone check */
 function playBeep(freq = 440, ms = 450) {
   try {
     const ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -59,11 +59,11 @@ function playBeep(freq = 440, ms = 450) {
     osc.start(t); osc.stop(t + ms / 1000 + 0.02);
   } catch (e) { console.warn("Beep failed:", e); }
 }
-window.playBeep = playBeep;   // so the in-stimulus button can call it
+window.playBeep = playBeep;  
 
 /* =============================== FRONT MATTER =============================== */
 
-/* consent (image shown in a bordered, scrollable box) */
+/* consent (jpg. in bordered, scrollable box) */
 timeline.push({
   type: jsPsychSurveyMultiChoice,
   preamble: `
@@ -82,7 +82,7 @@ timeline.push({
   })
 });
 
-/* eligibility screening (records, continues regardless) */
+/* eligibility screening (records, continues regardless? TODO) */
 timeline.push({
   type: jsPsychSurveyMultiChoice,
   preamble: "<p>在开始之前，请回答以下两个问题。</p>",
@@ -98,7 +98,7 @@ timeline.push({
   })
 });
 
-/* device + beep check */
+/* sound check */
 timeline.push({
   type: jsPsychHtmlKeyboardResponse,
   stimulus: "<p style=\"font-size:1.4em; line-height:1.7;\">请使用<strong>电脑</strong>（台式或笔记本均可，<strong>请勿使用手机或平板</strong>），并佩戴<strong>耳机</strong>。<br>建议使用 Chrome 或 Safari 浏览器。<br>按空格键继续。</p>",
@@ -112,12 +112,12 @@ timeline.push({
   on_load: () => playBeep()
 });
 
-/* ---- Simplified-Chinese input (IME) check ----
+/* ---- Simplified-Chinese input check ----
    Task 3 requires typing Simplified Hanzi. Online participants without a
    Simplified-Chinese IME can't do it, so we verify early. Loops up to 3 tries,
    records `ime_ok`, and never traps the participant (continues after 3). The
    failure notice tells online participants they can return the task on Prolific.
-   In the lab this passes on the first try. */
+   In the lab this passes on the first try. ?? TODO*/
 const imeCheck = {
   type: jsPsychSurveyText,
   preamble: "<p>本研究需要您使用<strong>简体中文输入法</strong>打字。<br>请在下方输入「<strong>学习</strong>」两个字，以确认您的输入法正常工作。</p>",
@@ -171,7 +171,7 @@ function rowMeta(row, extra) {
   }, extra || {});
 }
 
-/* Task 3 — free recall (audio once -> typed recall) */
+/* Task 3 — audio once -> typed recall */
 function makeTask3(row) {
   const listen = {
     type: jsPsychAudioKeyboardResponse, stimulus: row.audio,
@@ -191,10 +191,8 @@ function makeTask3(row) {
     }
   };
 
-  // Repeat block only (is_repeat=1): right after the audio and BEFORE typing,
-  // ask whether they heard THIS recording in Blocks 1-3.
-  // Veridical answer: same_audio -> 有 ; diff_condition -> 没有 (same word, different
-  // recording) -> a "有" here is a familiarity-driven false alarm (episodic vs. abstract).
+  // Repeat block only (is_repeat=1): ask question right after the audio and before typing,
+  // ask whether they heard this recording in Blocks 1-3.
   if (Number(row.is_repeat) === 1) {
     const recognition = {
       type: jsPsychHtmlButtonResponse,
@@ -213,7 +211,7 @@ function makeTask3(row) {
   return { timeline: [listen, recall] };
 }
 
-/* Task 1 & 2 — six-option forced choice (start -> audio once -> unlock -> click) */
+/* Task 1 & 2 — start -> audio once -> click */
 function makeForcedChoice(row) {
   const options = [0,1,2,3,4,5].map(i => ({
     text: row[`opt${i}_text`], role: row[`opt${i}_role`], tone: row[`opt${i}_tone`] }));
