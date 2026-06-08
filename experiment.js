@@ -196,7 +196,7 @@ function makeTask3(row) {
   if (Number(row.is_repeat) === 1) {
     const recognition = {
       type: jsPsychHtmlButtonResponse,
-      stimulus: "<p style=\"font-size:1.4em; line-height:1.7;\">在前面的章节中，您有没有听到过<strong>这一段录音</strong>？</p>",
+      stimulus: "<p style=\"font-size:1.4em; line-height:1.7;\">在前面的部分，您有没有听到过<strong>这一段录音</strong>？</p>",
       choices: ["有", "没有"],
       data: rowMeta(row, { phase: "repeat_recognition" }),
       on_finish: d => {
@@ -234,7 +234,7 @@ function makeForcedChoice(row) {
     prompt: "<p>请选择您听到的词语。</p>",
     choices: options.map(o => o.text),
     response_allowed_while_playing: false,
-    margin_vertical: "0px", margin_horizontal: "0px",
+    button_layout: "grid", grid_rows: 2, grid_columns: 3,   // v8: plugin lays out the 3×2 grid
     extensions: [{ type: jsPsychExtensionMouseTracking, params: { targets: FC_BTN_SELECTORS } }],
     on_load: () => {
       // Hide the option set while the audio plays; reveal it only once the audio
@@ -290,16 +290,16 @@ function makeTrialFromRow(row) {
 }
 
 const BLOCK_INTRO = {
-  1: "<div style=\"font-size:2.4em; font-weight:bold; margin-bottom:20px;\">第一章</div>" +
+  1: "<div style=\"font-size:2.4em; font-weight:bold; margin-bottom:20px;\">第一部分</div>" +
      "<div style=\"font-size:1em; line-height:1.7; max-width:680px; margin:0 auto 22px;\">您将听到一些词语。每段音频只播放一次。听完后，请用<strong>简体中文输入法</strong>把您听到的词语<strong>打出来</strong>。</div>" +
      "<div style=\"font-size:1.3em;\">按空格键开始</div>",
-  2: "<div style=\"font-size:2.4em; font-weight:bold; margin-bottom:20px;\">第二章</div>" +
+  2: "<div style=\"font-size:2.4em; font-weight:bold; margin-bottom:20px;\">选择部分</div>" +
      "<div style=\"font-size:1em; line-height:1.7; max-width:680px; margin:0 auto 22px;\">每段音频播放一次后，请从六个选项中<strong>点击</strong>您听到的词语。</div>" +
      "<div style=\"font-size:1.3em;\">按空格键开始</div>",
-  3: "<div style=\"font-size:2.4em; font-weight:bold; margin-bottom:20px;\">第三章</div>" +
+  3: "<div style=\"font-size:2.4em; font-weight:bold; margin-bottom:20px;\">选择部分</div>" +
      "<div style=\"font-size:1em; line-height:1.7; max-width:680px; margin:0 auto 22px;\">每段音频播放一次后，请从六个选项中<strong>点击</strong>您听到的词语。</div>" +
      "<div style=\"font-size:1.3em;\">按空格键开始</div>",
-  4: "<div style=\"font-size:2.4em; font-weight:bold; margin-bottom:20px;\">最后一章</div>" +
+  4: "<div style=\"font-size:2.4em; font-weight:bold; margin-bottom:20px;\">最后一部分</div>" +
      "<div style=\"font-size:1em; line-height:1.7; max-width:680px; margin:0 auto 22px;\">您会再听到一些词语，听完后<strong>打出</strong>您听到的词语。</div>" +
      "<div style=\"font-size:1.3em;\">按空格键开始</div>"
 };
@@ -310,7 +310,7 @@ const blockIntro = (b, label) => ({
 });
 const blockOutro = b => ({
   type: jsPsychHtmlKeyboardResponse,
-  stimulus: "<p>本章节结束。</p><p>按空格键继续。</p>",
+  stimulus: "<p>本部分结束。</p><p>按空格键继续。</p>",
   choices: [" "], data: { block: b, phase: "block_outro" }
 });
 

@@ -6,7 +6,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" href="data:,">
 
-  <!-- LOCAL, version-locked (jsPsych v7.3.0; plugin-survey 1.0.1; plugin-pipe latest) -->
+  <!-- LOCAL, version-locked v8: jspsych 8.2.2; core plugins 2.1.x; extension-mouse-tracking 1.2.0;
+       plugin-survey 4.0.0 (SurveyJS 2.3); plugin-pipe 0.6.0 (the v8 line).
+       Filenames are unchanged from v7 — the v8 dist archive uses the same names — so only
+       the files themselves were swapped, not these <script> lines. -->
   <script src="jspsych/dist/jspsych.js"></script>
   <link  href="jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
   <script src="jspsych/dist/plugin-html-keyboard-response.js"></script>
@@ -18,7 +21,7 @@
   <script src="jspsych/dist/plugin-preload.js"></script>
   <script src="jspsych/dist/extension-mouse-tracking.js"></script>
 
-  <!-- language-background survey (SurveyJS); v7.3-compatible release is 1.0.1 -->
+  <!-- language-background survey (SurveyJS); v8 line is plugin-survey 4.0.0 / SurveyJS 2.3 -->
   <script src="jspsych/dist/plugin-survey.js"></script>
   <link  href="jspsych/dist/survey.css" rel="stylesheet" type="text/css" />
 
@@ -28,20 +31,21 @@
   <!-- CSV parsing -->
   <script src="jspsych/dist/papaparse.min.js"></script>
 
-  <!-- CDN equivalents (uncomment to preview without the jspsych/ folder)
-  <script src="https://unpkg.com/jspsych@7.3.0"></script>
-  <link  href="https://unpkg.com/jspsych@7.3.0/css/jspsych.css" rel="stylesheet" />
-  <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.3"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.3"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@1.1.3"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-audio-button-response@1.1.3"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-survey-multi-choice@1.1.3"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-survey-text@1.1.3"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.3"></script>
-  <script src="https://unpkg.com/@jspsych/extension-mouse-tracking@1.1.0"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-survey@1.0.1"></script>
-  <link  href="https://unpkg.com/@jspsych/plugin-survey@1.0.1/css/survey.css" rel="stylesheet" />
-  <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe"></script>
+  <!-- CDN equivalents (uncomment to preview without the jspsych/ folder; v8 set.
+       If you actually use CDN, confirm the two CSS paths against jspsych.org for v8.)
+  <script src="https://unpkg.com/jspsych@8.2.2"></script>
+  <link  href="https://unpkg.com/jspsych@8.2.2/css/jspsych.css" rel="stylesheet" />
+  <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@2.1.0"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-html-button-response@2.1.0"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@2.1.0"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-audio-button-response@2.1.0"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-survey-multi-choice@2.1.0"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-survey-text@2.1.0"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-preload@2.1.0"></script>
+  <script src="https://unpkg.com/@jspsych/extension-mouse-tracking@1.2.0"></script>
+  <script src="https://unpkg.com/@jspsych/plugin-survey@4.0.0"></script>
+  <link  href="https://unpkg.com/@jspsych/plugin-survey@4.0.0/css/survey.css" rel="stylesheet" />
+  <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe@0.6.0"></script>
   <script src="https://unpkg.com/papaparse@5.4.1/papaparse.min.js"></script>
   -->
 
@@ -50,11 +54,11 @@
     .jspsych-display-element { font-size: 21px; }
     .jspsych-content { max-width: 92%; line-height: 1.7; }
 
-    /* six forced-choice options at FIXED positions: 3 top, 3 bottom */
+    /* six forced-choice options, 3 top / 3 bottom.
+       v8: the plugin sets display:grid + the 3×2 dimensions inline
+       (button_layout:"grid", grid_rows:2, grid_columns:3 in experiment.js);
+       here we only style spacing / width / alignment so nothing fights it. */
     #jspsych-audio-button-response-btngroup {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(2, 1fr);
       gap: 48px 64px;
       width: min(860px, 92vw);
       margin: 56px auto;

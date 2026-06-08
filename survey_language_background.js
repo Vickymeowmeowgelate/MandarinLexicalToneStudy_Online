@@ -1,6 +1,12 @@
 /* =============================================================================
    LANGUAGE-BACKGROUND SURVEY  (LEAP-Q adaptation, tone-background classification)
-   Stack: jsPsych v7 + @jspsych/plugin-survey (SurveyJS).  Simplified Chinese only.
+   Stack: jsPsych v8 + @jspsych/plugin-survey 4.x (SurveyJS 2.3).  Simplified Chinese only.
+   v8 NOTE: no logic changes were needed — the survey_json/survey_function API and every
+   question type/event used here (paneldynamic, matrix, matrixdropdown, ranking,
+   multipletext, rating; onValueChanged/onCurrentPageChanging/onValidateQuestion) are
+   stable across the SurveyJS 1.9 -> 2.3 jump. APPEARANCE differs (SurveyJS 2.x ships a
+   new default theme), so ensure the v8 plugin-survey survey.css is loaded and eyeball
+   the matrices / ranking / multipletext rendering once before launch.
 
    Exposes pushLanguageBackgroundSurvey(timeline).
 
