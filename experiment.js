@@ -2,8 +2,8 @@
    experiment.js — Mandarin Lexical Tone (MLT) online behavioural task
    -----------------------------------------------------------------------------
    Flow:
-     consent -> eligibility screening -> device/beep check
-            -> [ Block1 Task3 | Block2/3 Task1/Task2 | Block4 Repeat ]  (MLT_Online.csv)
+     consent -> eligibility screening -> sound + keyboard check
+            -> Main Task: [ Block1 typed-response | Block2/3 same-position/same-segmental units (counterbalanced) | Block4 Repeat ]  (in MLT_Online.csv)
             -> language-background questionnaire (survey_language_background.js)
             -> DataPipe save -> Prolific completion
 
@@ -11,7 +11,6 @@
    - Anonymity: PROLIFIC_PID is NEVER stored; only an anonymous subject_id +
      a from_prolific boolean.
    - Mouse-tracking is a secondary/exploratory measure on Task 1 & Task 2.
-   - Device check uses a generated beep (Web Audio), no audio file needed.
    ============================================================================= */
 
 const CONFIG = {
