@@ -319,7 +319,7 @@ async function resolveList() {
   const urlList = parseInt(jsPsych.data.getURLVariable("list"), 10);
   if (!isNaN(urlList) && urlList >= 1 && urlList <= CONFIG.nLists) return urlList;
   try {
-    const cond = await jsPsychPipe.getCondition(CONFIG.datapipeExperimentId);  // 0-based, balanced
+    const cond = await jsPsychPipe.getCondition(CONFIG.datapipeExperimentId);  // TODO
     if (typeof cond === "number" && cond >= 0) return (cond % CONFIG.nLists) + 1;
   } catch (e) { console.warn("getCondition unavailable; using local fallback list.", e); }
   let h = 0; for (const ch of subject_id) h = (h * 31 + ch.charCodeAt(0)) >>> 0;
