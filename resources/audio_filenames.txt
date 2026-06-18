@@ -1152,7 +1152,6 @@ resources/yi_double/一报还一报_M_Err_T2_Inter_C1.mp3
 resources/yi_double/一步一回头_M_Err_T2_Inter_C1.mp3
 resources/yi_double/一物降一物_M_Err_T2_Inter_C1.mp3
 resources/yi_double/一岁一枯荣_M_Err_T2_Intra_C2.mp3
-resources/yi_double/一步一会头_M_Err_T2_Intra_C2.mp3
 resources/yi_double/一步一回头_M_Err_T2_Intra_C2.mp3
 resources/yi_double/一报还一报_M_Err_T2_Intra_C4.mp3
 resources/yi_double/一物降一物_M_Err_T2_Intra_C4.mp3
